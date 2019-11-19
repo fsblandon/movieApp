@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Movie } from 'src/app/models/movie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-item',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MovieItemComponent implements OnInit {
 
-  constructor() { }
+  @Input('datamovie') datamovie: Movie;
+
+  movies: Movie[] = [];
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    this.movies = JSON.parse(localStorage.getItem('movies'));
+  }
+
+  deleteMovie(movie: any) {
+    if (movie) {
+      this.movies.splice(movie, 1);
+      localStorage.setItem('movies', JSON.stringify(this.movies));
+      this.router.navigateByUrl('/home');
+    }
   }
 
 }

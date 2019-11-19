@@ -1,11 +1,28 @@
-<p>{{datamovie.title}}</p>
-<div    class="card" 
-        style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">{{datamovie.title}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Release Date: {{datamovie.release}}</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="card-link">Card link</a>
-          <a href="#" class="card-link">Another link</a>
-    </div>
+<div    class="card"
+        style="width: 50rem; height: 100%;">
+        <div class="card-body ml-auto">
+            <button type="button" 
+                    class="btn btn-primary"
+                    (click)="goToAddMovie()">
+                    Add New Movie
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h5>{{movie.title}}</h5>
+                        </div>
+                        <div class="col-sm-3 ml-auto">
+                            <p>{{movie.release}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <!-- <img [src]="'public/img/'+movie.image" alt=""> -->
+                    <p>{{movie.description}}</p>
+                </div>
+            </div>
+        </div>
 </div>

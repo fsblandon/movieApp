@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Movie } from 'src/app/models/movie';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  movie: Movie;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getMovie(event: any) {
+    this.movie = event;
   }
 
 }

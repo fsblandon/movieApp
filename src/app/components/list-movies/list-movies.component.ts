@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
 
 @Component({
@@ -10,10 +10,16 @@ export class ListMoviesComponent implements OnInit {
 
   movies: Movie[] = [];
 
+  @Output() sendMovie = new EventEmitter<Movie>();
+
   constructor() { }
 
   ngOnInit() {
-    this.movies.push(JSON.parse(localStorage.getItem('movie')));
+    this.movies = JSON.parse(localStorage.getItem('movies'));
+  }
+
+  getMovie(movie: any) {
+    this.sendMovie.emit(movie);
   }
 
 }

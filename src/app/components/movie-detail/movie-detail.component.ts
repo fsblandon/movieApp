@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from 'src/app/models/movie';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-detail',
@@ -8,12 +9,30 @@ import { Movie } from 'src/app/models/movie';
 })
 export class MovieDetailComponent implements OnInit {
 
-  @Input('datamovie') datamovie: Movie;
+  @Input('movieselected') movieselected: Movie;
 
-  constructor() { }
+  movie: Movie = {
+    title: '',
+    release: new Date(),
+    description: '',
+    image: ''
+  }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.datamovie);
+    if (this.movieselected !== undefined) {
+      this.movie = this.movieselected;
+    }
+  }
+
+  ngOnChanges(){
+    if (this.movieselected !== undefined) {
+      this.movie = this.movieselected;
+    }
+  }
+  goToAddMovie() {
+    this.router.navigateByUrl('addmovie');
   }
 
 }

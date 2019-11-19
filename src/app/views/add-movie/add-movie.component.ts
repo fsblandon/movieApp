@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Movie } from 'src/app/models/movie';
 
 @Component({
   selector: 'app-add-movie',
@@ -11,6 +12,8 @@ export class AddMovieComponent implements OnInit {
   
 
   movieForm: FormGroup;
+
+  movies: Movie[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -47,7 +50,14 @@ export class AddMovieComponent implements OnInit {
   }
 
   addMovie() {
-    localStorage.setItem('movie', JSON.stringify(this.movieForm.value));
+    if(JSON.parse(localStorage.getItem('movies'))) {
+      this.movies = JSON.parse(localStorage.getItem('movies'));
+      this.movies.push(this.movieForm.value);
+      localStorage.setItem('movies', JSON.stringify(this.movies));
+    } else {
+      this.movies.push(this.movieForm.value);
+      localStorage.setItem('movies', JSON.stringify(this.movies));
+    }
     this.movieForm.reset();
     this.route.navigateByUrl('home');
   }

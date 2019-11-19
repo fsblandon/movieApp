@@ -1,4 +1,6 @@
-<div    class="row" 
-        *ngFor="let movie of movies">
-        <app-movie-detail [datamovie]="movie"></app-movie-detail>
+<div    *ngFor="let movie of movies">
+        <app-movie-item     [datamovie]="movie" 
+                            *ngIf="movies.length > 0"
+                            (click)="getMovie(movie)">
+        </app-movie-item>
 </div>
